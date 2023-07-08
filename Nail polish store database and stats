@@ -1,0 +1,23 @@
+Created a nail polish store.
+CREATE TABLE Nail_Polish 
+(id integer, 
+item TEXT,
+quantity TEXT,
+color TEXT,
+price INTEGER );
+
+INSERT INTO Nail_Polish VALUES(1, "Purpie", 16, "Purple", 30);
+INSERT INTO Nail_Polish VALUES(2, "Sooki", 8, "Turquoise", 15);
+INSERT INTO Nail_Polish VALUES(3, "Nova", 27, "Amber", 19);
+INSERT INTO Nail_Polish VALUES(4, "Latis", 41, "Yellow", 24);
+INSERT INTO Nail_Polish VALUES(5, "Kira", 56, "Red", 10);
+INSERT INTO Nail_Polish VALUES(6, "Phoma", 65, "White", 11);
+
+---Display the database order by price
+SELECT * FROM Nail_Polish ORDER BY price;
+
+----Display all database order by quantity that has over 10.
+SELECT * FROM Nail_Polish WHERE quantity > 10 ORDER BY quantity;
+
+---What is the sum of the quantity?
+SELECT item, SUM(quantity) FROM Nail_Polish;
