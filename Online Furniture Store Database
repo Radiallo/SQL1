@@ -118,3 +118,39 @@ INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,co
 INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,country,account_created,last_login,latitude,longitude) VALUES ('1/6/09 21:13','Chair',1200,'Visa','Kofi','Vancouver','British Columbia','Canada','1/7/08 21:16','1/14/09 20:50',49.25,-123.1333333);
 INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,country,account_created,last_login,latitude,longitude) VALUES ('1/14/09 11:19','Chair',1200,'Visa','Jennifer','Jumeira','Dubayy','United Arab Emirates','1/14/09 10:44','1/14/09 21:26',25.2097222,55.2477778);
 INSERT INTO sales(transaction_date,product,price,payment_type,name,city,state,country,account_created,last_login,latitude,longitude) VALUES ('1/13/09 19:39','Chair',1200,'Visa','Jolene','Englewood','CO','United states','1/6/09 22:00','1/14/09 22:02',39.64778,-104.98722);
+
+
+---List the average, max and minimum sale 
+
+SELECT AVG(PRICE) AS avg_sale, 
+MAX(price) AS max_sale, 
+MIN(price) AS min_sale
+FROM sales ;
+
+
+---List countries and their average, whose average transaction was greater than or equal to the average of the full data sheet, which was 1740. 
+
+SELECT country , AVG(price) AS avg_sales
+FROM sales
+GROUP BY country
+HAVING avg_sales > 1740
+ORDER BY avg_sales;
+
+
+---Create a new column showing how many times each country spent "above" or "below" the average transaction.
+
+SELECT country, COUNT(*), CASE
+WHEN price < 1740 THEN "below"
+WHEN price > 1740 THEN "above"
+END AS "average_purchase_price"
+FROM sales 
+GROUP BY average_purchase_price, country
+ORDER BY country;
+
+
+---Select the countries that spent above the average purchase price and paid with a "Mastercard"
+
+SELECT country 
+FROM sales 
+WHERE price > 1740 AND payment_type = "Mastercard"
+Group BY country;
