@@ -1,0 +1,62 @@
+--- Downloaded Data and Answered Questions concerning it
+
+#1. List each track and the quantity sold from greatest to least?
+SELECT tracks.name, COUNT(Invoice.InvoiceID) AS quantity 
+FROM chinook.tracks tracks
+JOIN chinook.invoice_items items
+ON tracks.TrackID  = items.invoiceID
+JOIN chinook.invoices invoice
+ON invoice.InvoiceID = items.InvoiceID
+GROUP BY tracks.name
+ORDER BY quantity DESC;
+
+#2. List each Genre and how many tracks were purchased for each in descending order.
+SELECT genre.name, COUNT(Invoice.InvoiceID) AS quantity 
+FROM chinook.genres genre
+JOIN chinook.tracks track
+ON genre.GenreID = track.GenreID
+JOIN chinook.invoice_items items
+ON track.TrackID = items.TrackID
+JOIN chinook.invoices invoice
+ON items.InvoiceID = invoice.InvoiceID
+Group by genre.name
+ORDER BY quantity DESC;
+
+#3. List all the artist we feature.
+SELECT * FROM chinook.artists;
+
+#4. List each customer and their sales representative.
+SELECT cust.FirstName AS CustomerFirstName, cust.LastName AS CustomerLastName, employ.FirstName AS RepresentativeFirstName, employ.LastName AS RepresentativeLastName
+FROM chinook.customers cust
+JOIN chinook.employees employ
+ON cust.SupportRepID = employ.EmployeeID;
+
+#5. List the Sales Revenue from the year 2013.
+SELECT SUM(Total) AS '2013_Revenue' FROM chinook.invoices
+WHERE InvoiceDate like '2013%';
+
+#6. List the Total Sales by each Sales Representative.
+SELECT SUM(invo.total) AS Total, employ.LastName 
+FROM chinook.employees employ
+JOIN chinook.customers cust
+ON employ.employeeID = cust.SupportRepID
+JOIN chinook.invoices invo
+ON cust.CustomerID = invo.InvoiceID
+GROUP BY employ.LastName;
+
+#7. Select all customer information from customers only in the United States of America.
+SELECT *
+FROM chinook.customers
+WHERE Country LIKE '%USA';
+
+#8. List all customer emails.
+SELECT DISTINCT Email
+FROM chinook.customers;
+
+#9. List each artist and label how many albums they each have.
+SELECT artis.Name, COUNT(album.Title) AS albums
+FROM chinook.albums album
+JOIN chinook.artists artis
+ON album.ArtistID = artis.ArtistID
+GROUP BY artis.Name
+ORDER BY albums DESC; 
