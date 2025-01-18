@@ -137,7 +137,7 @@ HAVING avg_sales > 1740
 ORDER BY avg_sales;
 
 
----Create a new column showing how many times each country spent "above" or "below" the average transaction.
+--Create a new column showing how many times each country spent "above" or "below" the average transaction.
 
 SELECT country, COUNT(*), CASE
 WHEN price < 1740 THEN "below"
