@@ -63,7 +63,7 @@ JOIN chinook.Invoices Inv ON Inv.CustomerId = cust.CustomerId;
 SELECT DISTINCT Email
 FROM chinook.customers;
 
-#9. List each artist and label how many albums they each have.
+#9. List each artist & label how many albums they each have.
 SELECT artis.Name, COUNT(album.Title) AS albums
 FROM chinook.albums album
 JOIN chinook.artists artis
