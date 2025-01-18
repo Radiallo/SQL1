@@ -14,15 +14,15 @@ INSERT INTO Nail_Polish VALUES(4, "Latis", 41, "Yellow", 24);
 INSERT INTO Nail_Polish VALUES(5, "Kira", 56, "Red", 10);
 INSERT INTO Nail_Polish VALUES(6, "Phoma", 65, "White", 11);
 
----Display the database order by price
+--Display the database order by price
 SELECT * FROM Nail_Polish ORDER BY price;
 
-----Display all database order by quantity that has over 10.
+--Display all database order by quantity that has over 10.
 SELECT * FROM Nail_Polish WHERE quantity > 10 ORDER BY quantity;
 
----What is the sum of the quantity?
+--What is the sum of the quantity?
 SELECT item, SUM(quantity) FROM Nail_Polish;
 
----#Write your own SQL query that will show a statistic about the item prices.
+--#Write your own SQL query that will show a statistic about the item prices.
 SELECT avg(price)
 FROM Nail_Polish;
